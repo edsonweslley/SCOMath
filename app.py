@@ -1,9 +1,9 @@
-from fileinput import filename
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, send_from_directory, url_for
 from werkzeug.utils import secure_filename
-from datetime import datetime
 import constants as cte
+import scripts
 import os
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -22,16 +22,12 @@ def create_app():
                 new_filename = filename
                 save_location = os.path.join(cte.PATH_INPUT, new_filename)
                 file.save(save_location)
-
-                # output_file = process_csv(save_location)
-                #return send_from_directory('output', output_file)
-                # return redirect(url_for('download'))
-            return redirect(url_for('questions.html'))
-
+                scripts.extract_zip(cte.PATH_INPUT, new_filename)
+                return redirect(url_for('questions'))
         return render_template('upload.html')
 
     @app.route('/questions', methods=['GET', 'POST'])
     def questions():
-        return ""
+        return render_template('questions.html')
 
     return app

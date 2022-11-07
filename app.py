@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, send_from_directory, url_for
+from flask import Flask, request, render_template, redirect, \
+    send_from_directory, url_for
 from werkzeug.utils import secure_filename
 import constants as cte
 import scripts
@@ -26,8 +27,31 @@ def create_app():
                 return redirect(url_for('questions'))
         return render_template('upload.html')
 
+    list_questions = []
+
     @app.route('/questions', methods=['GET', 'POST'])
     def questions():
+        # print(request.form)
+        list_questions.append((
+            request.form.get("id-question"),
+            request.form.get("text-question"),
+            request.form.get("type-question"),
+            request.form.get("question-question"),
+            request.form.get("answer-question"),
+            request.form.get("objective-question")
+        ))
+        if len(list_questions) > 2:
+            list_questions.clear()
+        if request.method == "POST":
+            return redirect(url_for('download'))
         return render_template('questions.html')
+
+    @app.route('/download')
+    def download():
+        return render_template('download.html', files=os.listdir('input'))
+
+    @app.route('/download/<filename>')
+    def download_file(filename):
+        return send_from_directory('input', filename)
 
     return app

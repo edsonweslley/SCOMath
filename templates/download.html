@@ -1,0 +1,6 @@
+{% for filename in files %}
+{% if filename.split(".")[1] == "zip" %}
+<button><a href="{{ url_for('download_file', filename=filename) }}"> Baixar pacote </a><br /></button>
+
+{% endif %}
+{% endfor %}

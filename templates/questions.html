@@ -1,4 +1,59 @@
-<h1>Formulário de questões</h1>
+
 Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao pressionar esse botão
 irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois quando finalizar, 
 encaminhar para o botão de baixar o pacote.
+
+
+<body>
+    <h1>Formulário de questões</h1>
+    <form method="POST">
+      <div class="form__fieldset">
+        <label for="id-question" class="form__label"> Id questão </label>
+        <input type="id-question" name="id-question" id="id-question" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <label for="text-question" class="form__label"> Texto da questão </label>
+        <input type="text-question" name="text-question" id="text-question" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <label for="type-question" class="form__label">Tipo da questão:</label>
+        <select name="type-question" id="type-question" class="form__input form__select">
+          <option value="QUESTION_TYPE_NUMERIC">Questão escrita</option>
+          <option value="QUESTION_TYPE_CHOICE">Questão de multipla escolha</option>
+          <option value="QUESTION_TYPE_TF">Questão verdadeira ou falsa</option>
+        </select>
+      </div>
+
+      <!-- <div class="form__fieldset">
+        <label for="type-question" class="form__label"> Tipo da questão: </label> <br />
+        <input type="radio" name="type-question" id="type-question" class="form__input" value=""/>  <br />
+        <input type="radio" name="type-question" id="type-question" class="form__input" value="" />  <br />
+        <input type="radio" name="type-question" id="type-question" class="form__input" value=""/>  <br />
+      </div> -->
+
+      <div class="form__fieldset">
+        <label for="question-question" class="form__label"> Perguntas da questão: </label>
+        <input type="question-question" name="question-question" id="question-question" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <label for="answer-question" class="form__label"> Resposta da questão: </label>
+        <input type="answer-question" name="answer-question" id="answer-question" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <label for="objective-question" class="form__label">Objective Id:</label>
+        <input type="objective-question" name="objective-question" id="objective-question" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <input
+          class="form__submit form__input"
+          type="submit"
+          value="Salvar questão"
+        />
+      </div>
+    </form>
+  </body>

@@ -27,21 +27,30 @@ def create_app():
                 return redirect(url_for('questions'))
         return render_template('upload.html')
 
-    list_questions = []
+    # list_questions = list()
 
     @app.route('/questions', methods=['GET', 'POST'])
     def questions():
         # print(request.form)
-        list_questions.append((
+        # list_questions.append((
+        #     request.form.get("id-question"),
+        #     request.form.get("text-question"),
+        #     request.form.get("type-question"),
+        #     request.form.get("question-question"),
+        #     request.form.get("answer-question"),
+        #     request.form.get("objective-question")
+        # ))
+        # if len(list_questions) > 2:
+        #     list_questions.clear()
+        #       print(request.form)
+        scripts.create_question(
             request.form.get("id-question"),
             request.form.get("text-question"),
             request.form.get("type-question"),
             request.form.get("question-question"),
             request.form.get("answer-question"),
             request.form.get("objective-question")
-        ))
-        if len(list_questions) > 2:
-            list_questions.clear()
+        )
         if request.method == "POST":
             return redirect(url_for('download'))
         return render_template('questions.html')

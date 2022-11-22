@@ -5,11 +5,10 @@ Creative Commons Attribution 3.0 United States License
 
 Want to make SCORM easy? See our solutions at http://www.scorm.com.
 
-This example provides for the bare minimum SCORM run-time calls.
-It will demonstrate using the API discovery algorithm to find the
-SCORM API and then calling Initialize and Terminate when the page
-loads and unloads respectively. This example also demonstrates
-some basic SCORM error handling.
+This example demonstrates the use of basic runtime calls in a multi-page SCO. It
+includes a demonstration of bookmarking, status reporting (completion and success), 
+score and time. It also includes the addition of a basic "controller" for providing
+intra-SCO navigation.
 */
 
 
@@ -77,10 +76,10 @@ function GetAPI(win)
   
 //Create function handlers for the loading and unloading of the page
 
-
 //Constants
 var SCORM_TRUE = "true";
 var SCORM_FALSE = "false";
+var SCORM_NO_ERROR = "0";
 
 //Since the Unload handler will be called twice, from both the onunload
 //and onbeforeunload events, ensure that we only call Terminate once.
@@ -140,11 +139,58 @@ function ScormProcessTerminate(){
 
 
 /*
-Assign the processing functions to the page's load and unload
-events. The onbeforeunload event is included because it can be 
-more reliable than the onunload event and we want to make sure 
-that Terminate is ALWAYS called.
+The onload and onunload event handlers are assigned in launchpage.html because more processing needs to 
+occur at these times in this example.
 */
-window.onload = ScormProcessInitialize;
-window.onunload = ScormProcessTerminate;
-window.onbeforeunload = ScormProcessTerminate;
+//window.onload = ScormProcessInitialize;
+//window.onunload = ScormProcessTerminate;
+//window.onbeforeunload = ScormProcessTerminate;
+
+//There are situations where a GetValue call is expected to have an error
+//and should not alert the user.
+function ScormProcessGetValue(element, checkError){
+    
+    var result;
+    
+    if (initialized == false || terminateCalled == true){return;}
+    
+    result = API.GetValue(element);
+    
+    if (checkError == true && result == ""){
+    
+        var errorNumber = API.GetLastError();
+        
+        if (errorNumber != SCORM_NO_ERROR){
+            var errorString = API.GetErrorString(errorNumber);
+            var diagnostic = API.GetDiagnostic(errorNumber);
+            
+            var errorDescription = "Number: " + errorNumber + "\nDescription: " + errorString + "\nDiagnostic: " + diagnostic;
+            
+            alert("Error - Could not retrieve a value from the LMS.\n\n" + errorDescription);
+            return "";
+        }
+    }
+    
+    return result;
+}
+
+function ScormProcessSetValue(element, value){
+   
+    var result;
+    
+    if (initialized == false || terminateCalled == true){return;}
+    
+    result = API.SetValue(element, value);
+    
+    if (result == SCORM_FALSE){
+        var errorNumber = API.GetLastError();
+        var errorString = API.GetErrorString(errorNumber);
+        var diagnostic = API.GetDiagnostic(errorNumber);
+        
+        var errorDescription = "Number: " + errorNumber + "\nDescription: " + errorString + "\nDiagnostic: " + diagnostic;
+        
+        alert("Error - Could not store a value in the LMS.\n\nYour results may not be recorded.\n\n" + errorDescription);
+        return;
+    }
+    
+}

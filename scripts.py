@@ -20,17 +20,32 @@ def zip_folder(path, foldername):
     return (str(foldername))
 
 
-def create_question(id, text, type, answers, correctAnswer, objectiveId):
+# def create_question(id, text, type, answers, correctAnswer, objectiveId):
+#     question = f"""
+# test.AddQuestion(new Question ("{id}",\n
+#                                 "{text}",\n
+#                                 {type},\n
+#                                 {answers},\n
+#                                 {correctAnswer},\n
+#                                 "{objectiveId}"\n)
+#                 );
+#     """
+#     with open('teste.js', 'w') as file:
+#         for line in question.split('\n'):
+#             file.write(line + '\n')
+
+
+def create_question(text, correctAnswer, step):
     question = f"""
-test.AddQuestion(new Question ("{id}",\n
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_{step}",\n
                                 "{text}",\n
-                                {type},\n
-                                {answers},\n
-                                {correctAnswer},\n
-                                "{objectiveId}"\n)
+                                QUESTION_TYPE_NUMERIC,\n
+                                null,\n
+                                "{correctAnswer}",\n
+                                "obj_playing"\n)
                 );
     """
-    with open('teste.js', 'w') as file:
+    with open('teste.js', 'a') as file:
         for line in question.split('\n'):
             file.write(line + '\n')
 

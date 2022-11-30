@@ -1,62 +1,78 @@
+<html>
 
-Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao pressionar esse botão
-irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois quando finalizar, 
-encaminhar para o botão de baixar o pacote.
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+        .input-wrapper div {
+            margin-bottom: 10px;
+        }
 
-<head>  
-  <title>Python Flask Add Remove Input Fields Dynamically with jQuery and save to database MySQLdb</title>  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- </head>  
+        .remove-input {
+            margin-top: 10px;
+            margin-left: 15px;
+            vertical-align: text-bottom;
+        }
+
+        .add-input {
+            margin-top: 10px;
+            margin-left: 10px;
+            vertical-align: text-bottom;
+        }
+
+        .img-button {
+            max-height: 18px;
+            max-width: 20px;
+        }
+    </style>
+</head>
+
 <body>
-    <h1>Formulário de questões</h1>
-    <form method="POST">
-      <div class="form__fieldset">
-        <label for="id-question" class="form__label"> Id questão </label>
-        <input type="id-question" name="id-question" id="id-question" class="form__input" />
-      </div>
+    <div style="width:85%;padding:50px;">
+        <h2>Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao pressionar esse botão
+            irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois quando finalizar, 
+            encaminhar para o botão de baixar o pacote.
+            </h2>
+        {% if message %}
+        <div class="alert alert-success">{{message}}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="input-wrapper">
+                <div class="form__fieldset">
+                    <label for="answer-question" class="form__label"> Resposta da questão: </label>
+                    <input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /> <br>
+                    <label for="text-question" class="form__label"> Texto da questão </label>
+                    <input type="text-question" name="text-question-field[]" id="text-question" class="form__input" />
+                    <a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"
+                            class="img-button" /></a>
+                </div>
+            </div>
+                <input type="submit" name="cmdsubmit">
+        </form>
 
-      <div class="form__fieldset">
-        <label for="text-question" class="form__label"> Texto da questão </label>
-        <input type="text-question" name="text-question" id="text-question" class="form__input" />
-      </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var max_input_fields = 40;
+            var add_input = $('.add-input');
+            var input_wrapper = $('.input-wrapper');
+            var new_input = '<div><input type="text" name="field[]" value=""/><a href="javascript:void(0);" class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button"></a></div>';
+            // var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" id="answer-question" class="form__input" /><a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"class="img-button" /></a></div>';
+            var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><br><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            
+            var add_input_count = 1;
+            $(add_input).click(function () {
+                if (add_input_count < max_input_fields) {
+                    add_input_count++;
+                    $(input_wrapper).append(new_input);
+                }
+            });
+            $(input_wrapper).on('click', '.remove-input', function (e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                add_input_count--;
+            });
+        });
+    </script>
+</body>
 
-      <div class="form__fieldset">
-        <label for="type-question" class="form__label">Tipo da questão:</label>
-        <select name="type-question" id="type-question" class="form__input form__select">
-          <option value="QUESTION_TYPE_NUMERIC">Questão escrita</option>
-          <option value="QUESTION_TYPE_CHOICE">Questão de multipla escolha</option>
-          <option value="QUESTION_TYPE_TF">Questão verdadeira ou falsa</option>
-        </select>
-      </div>
-
-      <!-- <div class="form__fieldset">
-        <label for="type-question" class="form__label"> Tipo da questão: </label> <br />
-        <input type="radio" name="type-question" id="type-question" class="form__input" value=""/>  <br />
-        <input type="radio" name="type-question" id="type-question" class="form__input" value="" />  <br />
-        <input type="radio" name="type-question" id="type-question" class="form__input" value=""/>  <br />
-      </div> -->
-
-      <div class="form__fieldset">
-        <label for="question-question" class="form__label"> Perguntas da questão: </label>
-        <input type="question-question" name="question-question" id="question-question" class="form__input" />
-      </div>
-
-      <div class="form__fieldset">
-        <label for="answer-question" class="form__label"> Resposta da questão: </label>
-        <input type="answer-question" name="answer-question" id="answer-question" class="form__input" />
-      </div>
-
-      <div class="form__fieldset">
-        <label for="objective-question" class="form__label">Objective Id:</label>
-        <input type="objective-question" name="objective-question" id="objective-question" class="form__input" />
-      </div>
-
-      <div class="form__fieldset">
-        <input
-          class="form__submit form__input"
-          type="submit"
-          value="Salvar questão"
-        />
-      </div>
-    </form>
-  </body>
+</html>

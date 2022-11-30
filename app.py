@@ -43,15 +43,22 @@ def create_app():
         # if len(list_questions) > 2:
         #     list_questions.clear()
         #       print(request.form)
-        scripts.create_question(
-            request.form.get("id-question"),
-            request.form.get("text-question"),
-            request.form.get("type-question"),
-            request.form.get("question-question"),
-            request.form.get("answer-question"),
-            request.form.get("objective-question")
-        )
+        text_question = request.form.getlist("text-question-field[]")
+        answer_question = request.form.getlist("answer-question-field[]")
+
+        
+        
+        # scripts.create_question(
+        #     request.form.get("id-question"),
+        #     request.form.get("text-question"),
+        #     request.form.get("type-question"),
+        #     request.form.get("question-question"),
+        #     request.form.get("answer-question"),
+        #     request.form.get("objective-question")
+        # )
         if request.method == "POST":
+            for i in range(len(text_question)):
+                scripts.create_question(text_question[i], answer_question[i], i+1)
             return redirect(url_for('download'))
         return render_template('questions.html')
 

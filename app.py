@@ -45,7 +45,7 @@ def create_app():
         #       print(request.form)
         text_question = request.form.getlist("text-question-field[]")
         answer_question = request.form.getlist("answer-question-field[]")
-
+        statement_question = request.form.getlist("statement-question-field[]")
         
         
         # scripts.create_question(
@@ -58,16 +58,19 @@ def create_app():
         # )
         if request.method == "POST":
             for i in range(len(text_question)):
-                scripts.create_question(text_question[i], answer_question[i], i+1)
+                scripts.create_question(text_question[i], answer_question[i], i + 1)
+            scripts.create_name_question(statement_question[0])
+            scripts.zip_folder(cte.PATH_PACOTE_BASE, "RuntimeBasicCalls_SCORM20043rdEdition")
+            scripts.blank_question_file()
             return redirect(url_for('download'))
         return render_template('questions.html')
 
     @app.route('/download')
     def download():
-        return render_template('download.html', files=os.listdir('input'))
+        return render_template('download.html', files=os.listdir('pacote_base'))
 
     @app.route('/download/<filename>')
     def download_file(filename):
-        return send_from_directory('input', filename)
+        return send_from_directory('pacote_base', filename)
 
     return app

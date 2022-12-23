@@ -23,32 +23,82 @@
             max-height: 18px;
             max-width: 20px;
         }
+
+        .container {
+            /* background-color: black; */
+            /* height: 50%; */
+            /* background: #6C7A89; */
+            /* flex-wrap: wrap; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .form__fieldset{
+            display: flex;
+            flex-direction: row;
+        }
+
+        #id-label-text-statement {
+            margin-left: 20.75rem;
+
+        }
+
+        #text-statement {
+            width: 50rem;
+            height: 4rem;
+            white-space: normal;
+            text-align: justify;
+            -moz-text-align-last: center;
+            text-align-last: center;
+        }
+
+        .form__label{
+            flex-wrap: wrap;
+
+        }
+        .submit-button {
+            /* margin-left: 51rem;
+            margin-top: -10rem;
+            width: 100px;
+            height: 30px; */
+            /* position: fixed; */
+        }
     </style>
 </head>
 
 <body>
     <div style="width:85%;padding:50px;">
-        <h2>Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao pressionar esse botão
-            irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois quando finalizar, 
+        <h2>Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao
+            pressionar esse botão
+            irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois
+            quando finalizar,
             encaminhar para o botão de baixar o pacote.
-            </h2>
+        </h2>
         {% if message %}
         <div class="alert alert-success">{{message}}</div>
         {% endif %}
         <form method="POST">
-            <div class="input-wrapper">
-                <div class="form__fieldset">
-                    <label for="answer-question" class="form__label"> Resposta da questão: </label>
-                    <input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /> <br>
-                    <label for="text-question" class="form__label"> Texto da questão </label>
-                    <input type="text-question" name="text-question-field[]" id="text-question" class="form__input" />
-                    <a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"
-                            class="img-button" /></a>
+            <div class="container">
+                <div class="input-wrapper">
+                    <div class="form__fieldset">
+                        <label for="text-statement" class="form__label" id="id-label-text-statement"> Enunciado da
+                            questão </label>
+                        <textarea type="statement-question" name="statement-question-field[]" id="text-statement"
+                            class="form__input"> </textarea>
+                        <label for="text-question" class="form__label"> Texto da questão </label> 
+                        <textarea type="text-question" name="text-question-field[]" id="text-question"
+                            class="form__input">Passo 1</textarea><br>
+                        <label for="answer-question" class="form__label"> Resposta da questão: </label>
+                        <textarea type="text" name="answer-question-field[]" value="" id="answer-question"
+                            class="form__input"> </textarea>
+                        <a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"
+                                class="img-button" /></a>
+                    </div>
+                    <input class='submit-button' type="submit" name="cmdsubmit">
                 </div>
-            </div>
-                <input type="submit" name="cmdsubmit">
         </form>
-
+    </div>
     </div>
     <script>
         $(document).ready(function () {
@@ -57,10 +107,12 @@
             var input_wrapper = $('.input-wrapper');
             var new_input = '<div><input type="text" name="field[]" value=""/><a href="javascript:void(0);" class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button"></a></div>';
             // var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" id="answer-question" class="form__input" /><a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"class="img-button" /></a></div>';
-            var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><br><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
-            
+            // var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><br><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            // var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><br><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><br><textarea type="text-question" name="text-question-field[]" id="text-question" class="form__input">Passo ' + (add_input_count + 1) + '</textarea><br><label for="answer-question" class="form__label"> Resposta da questão: </label><br><textarea type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" <textarea/><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
             var add_input_count = 1;
             $(add_input).click(function () {
+                var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><br><textarea type="text-question" name="text-question-field[]" id="text-question" class="form__input">Passo ' + (add_input_count + 1) + '</textarea><br><label for="answer-question" class="form__label"> Resposta da questão: </label><br><textarea type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" <textarea/><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
                 if (add_input_count < max_input_fields) {
                     add_input_count++;
                     $(input_wrapper).append(new_input);

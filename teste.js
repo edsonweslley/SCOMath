@@ -268,3 +268,213 @@ test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_12",
 )
                 );
     
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_1",
+
+                                "Passo 1",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasd",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_2",
+
+                                "Passo 2",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasdas",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_3",
+
+                                "asdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasd",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_4",
+
+                                "asdasd",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "dasda",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_5",
+
+                                "asdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdas",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_6",
+
+                                "asdasdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "d",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_1",
+
+                                "Passo 1",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasd",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_2",
+
+                                "Passo 2",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasdas",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_3",
+
+                                "asdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdasd",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_4",
+
+                                "asdasd",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "dasda",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_5",
+
+                                "asdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "asdas",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_6",
+
+                                "asdasdas",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "d",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_1",
+
+                                "123",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "312",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_2",
+
+                                "111",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "111",
+
+                                "obj_playing"
+)
+                );
+    

@@ -45,14 +45,34 @@ test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_{step
                                 "obj_playing"\n)
                 );
     """
-    with open('teste.js', 'a') as file:
+    with open(cte.PATH_QUESTIONS, 'a') as file:
         for line in question.split('\n'):
             file.write(line + '\n')
 
 
 def blank_question_file():
-    with open('teste.js', 'w') as fout:
+    with open(cte.PATH_QUESTIONS, 'w') as fout:
         fout.write('')
+
+
+def create_name_question(text):
+    html_base = open('htmlbase.html', 'r', encoding='utf-8')
+    string_html_base = ""
+    for e in html_base:
+        string_html_base += e
+    name_question = f"""
+<h1>{text}</h1>
+<script type="text/javascript">
+RenderTest(test);
+</script>
+</body>
+</html>
+    """
+    final_html = string_html_base + name_question
+    with open(cte.PATH_ASSESSMENT, 'w', encoding='utf-8') as file:
+        file.write(final_html)
+
+
 
 
 path = cte.PATH_INPUT
@@ -72,3 +92,17 @@ foldername = filename.split(".")[0]
 #                 "obj_havingfun")
 
 # blank_question_file()
+# x = 
+
+# y = ""
+# for e in x:
+#     # print(str(e))
+#     y += e
+
+# # with open('htmlbase.html', 'a') as file:
+# #     file.write('teste')
+
+# y = y[:len(y)-105:]
+
+# z = open('novohtml.html', 'w', encoding='utf-8')
+# z.write(y)

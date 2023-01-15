@@ -14,6 +14,10 @@ def allowed_file(filename):
 def create_app():
     app = Flask(__name__)
 
+    @app.route("/")
+    def index():
+        return redirect('/questions')
+
     @app.route('/upload', methods=['GET', 'POST'])
     def upload():
         if request.method == 'POST':
@@ -57,12 +61,14 @@ def create_app():
         #     request.form.get("objective-question")
         # )
         if request.method == "POST":
+            scripts.blank_question_file()
             for i in range(len(text_question)):
                 scripts.create_question(text_question[i], answer_question[i], i + 1)
             scripts.create_name_question(statement_question[0])
             scripts.zip_folder(cte.PATH_PACOTE_BASE, "RuntimeBasicCalls_SCORM20043rdEdition")
-            scripts.blank_question_file()
-            return redirect(url_for('download'))
+
+            return send_from_directory(cte.PATH_PACOTE_BASE, 'RuntimeBasicCalls_SCORM20043rdEdition.zip')
+            # return redirect(url_for('download'))
         return render_template('questions.html')
 
     @app.route('/download')

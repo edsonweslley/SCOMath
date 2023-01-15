@@ -100,7 +100,7 @@ for (var i=0; i<includeFiles.length; i++){
             // }
             
             // wasCorrect = (correctAnswer == learnerResponse);
-            wasCorrect = (stringSimilarity.compareTwoStrings((learnerResponse.toLowerCase().split(' ').sort()).join(' '), ((correctAnswer.toLowerCase().split(' ').sort()).join(' '))) > 0.8);
+            wasCorrect = (stringSimilarity.compareTwoStrings((learnerResponse.toLowerCase().split(' ').sort()).join(' '), ((correctAnswer.toLowerCase().split(' ').sort()).join(' '))) + stringSimilarity.compareTwoStrings(learnerResponse.toLowerCase(), correctAnswer.toLowerCase())> 0.8);
             
             if (wasCorrect) {correctCount++;}
             
@@ -191,7 +191,7 @@ for (var i=0; i<includeFiles.length; i++){
     <script src="../shared/contentfunctions.js" type="text/javascript"></script>
 </head>
 <body>
-<h1> </h1>
+<h1>Resolva a seguinte equação em 3 passos X + 30 = 20 - 10</h1>
 <script type="text/javascript">
 RenderTest(test);
 </script>

@@ -1,0 +1,279 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-width: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #4f5d75;
+        }
+
+        textarea {
+            border-radius: 0.313rem;
+        }
+
+        .container {
+            background: #ef8354;
+            max-width: 37.5rem;
+            border-radius: 0.313rem;
+            width: 37.5rem;
+            padding: 1.25rem;
+            box-shadow: 0 0.125rem 0.125rem 0.188rem #2d3142;
+
+        }
+
+        .form__fieldset {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+        }
+
+        #line {
+            margin-top: 1.25rem;
+            padding-top: 0.313rem;
+            border-top: 0.125rem solid #efefef;
+        }
+
+        #line2 {
+            color: #ffffff;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.313rem;
+            border-bottom: 0.125rem solid #efefef;
+        }
+
+        /* 
+        CSS enunciado
+        */
+        .form__label {
+            color: #ffffff;
+            /* background: yellow; */
+            margin-bottom: 9.375rem;
+            margin-left: 15.625rem;
+        }
+
+        .form__input {
+            /* margin-left: 35%; */
+        }
+
+        #text-statement {
+            width: 31.25rem;
+            height: 6.25rem;
+            /* height: 400px; */
+            /* margin-right: 200px; */
+            /* padding-left: 100px; */
+            /* padding-bottom: 100px; */
+        }
+
+        .input-wrapper div {
+            margin-bottom: 0.625rem;
+        }
+
+        .img-button {
+            max-height: 1.125rem;
+            max-width: 1.25rem;
+        }
+
+        .flex {
+            /* display: flex; */
+            gap: 1rem;
+
+        }
+
+        .form__input {
+            width: 35rem;
+            height: 3.125rem;
+        }
+
+        .form__input,
+        .form__input__statement {
+            white-space: normal;
+            text-align: justify;
+            -moz-text-align-last: center;
+            text-align-last: center;
+        }
+
+        #text-question {
+            margin-bottom: 0.625rem;
+        }
+
+        .form__label {
+            margin-left: 13.75rem;
+        }
+
+        #label-text-question {
+            margin-left: 14.25rem;
+        }
+
+
+        .submit-button {
+            border: 1px solid #2d3142;
+            border-radius: 5px;
+            font-size: 12px;
+            width: 130px;
+            height: 50px;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+
+        .plus {
+            /* position: fixed; */
+            margin-left: 85px;
+        }
+
+        .minus {
+            padding-top: 5px;
+            margin-left: 542px;
+        }
+
+        #id-label-text-statement {
+            color: #ffffff;
+            padding-right: 20px;
+        }
+
+
+        /* .remove-input {
+            margin-top: 10px;
+            margin-left: 15px;
+            vertical-align: text-bottom;
+        }
+
+        .add-input {
+            margin-top: 10px;
+            margin-left: 10px;
+            vertical-align: text-bottom;
+        }
+
+
+
+        .container {
+            background-color: black;
+            height: 50%;
+            background: #6C7A89;
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .form__fieldset{
+            display: flex;
+            flex-direction: row;
+        }
+
+        #id-label-text-statement {
+            margin-left: 20.75rem;
+
+        }
+
+
+
+        .form__label{
+            flex-wrap: wrap;
+
+        }  */
+        .submit-button {
+            /* margin-left: 51rem;
+            margin-top: -10rem;
+            width: 100px;
+            height: 30px; */
+            /* position: fixed; */
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding:150px;">
+        <!-- style="width:85%;padding:50px;" -->
+        <!-- <h2>Ideia é ter um formulário de questões onde vai ter os campos das questões e um botão de submit, onde ao
+            pressionar esse botão
+            irá disparar um evento para salvar os dados preenchidos no arquivo js presetado do pacote disponivel, depois
+            quando finalizar,
+            encaminhar para o botão de baixar o pacote.
+
+            DICA: O último passo é a resposta final da questão
+        </h2> -->
+        {% if message %}
+        <div class="alert alert-success">{{message}}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="container">
+                <div class="input-wrapper">
+
+                    <h3 id="line2">
+                        SCOMath - Gerador de pacotes SCORM para questões matemáticas
+                    </h3>
+                    <div class="form__fieldset">
+                        <label for="text-statement" class="form__label__statement" id="id-label-text-statement">
+                            Enunciado da
+                            questão </label>
+                        <textarea type="statement-question" name="statement-question-field[]" id="text-statement"
+                            class="form__input__statement"> </textarea>
+
+                        <div class="buttons-submit-plus">
+                            <!-- <label for="button-submit">Gerar pacote SCORM</label> -->
+                            <input class='submit-button' type="submit" name="cmdsubmit" value="Gerar pacote SCORM">
+                            <!-- <label for="text-question" class="form__label"> Texto da questão </label>
+                        <textarea type="text-question" name="text-question-field[]" id="text-question"
+                            class="form__input">Passo 1</textarea><br>
+                        <label for="answer-question" class="form__label"> Resposta da questão: </label>
+                        <textarea type="text" name="answer-question-field[]" value="" id="answer-question"
+                            class="form__input"> </textarea> -->
+                            <!-- <a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"
+                                class="img-button" /></a> -->
+                            <a href="javascript:void(0);" class="add-input" title="Add input"><img
+                                    src="/static/plus.png" class="img-button plus" /></a>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var max_input_fields = 40;
+            var add_input = $('.add-input');
+            var input_wrapper = $('.input-wrapper');
+            var new_input = '<div><input type="text" name="field[]" value=""/><a href="javascript:void(0);" class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button"></a></div>';
+            // var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" id="answer-question" class="form__input" /><a href="javascript:void(0);" class="add-input" title="Add input"><img src="/static/plus.png"class="img-button" /></a></div>';
+            // var new_input = '<div class="form__fieldset"><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><br><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            // var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><input type="text-question" name="text-question-field[]" id="text-question" class="form__input" /><br><label for="answer-question" class="form__label"> Resposta da questão: </label><input type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" /><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><br><textarea type="text-question" name="text-question-field[]" id="text-question" class="form__input">Passo ' + (add_input_count + 1) + '</textarea><br><label for="answer-question" class="form__label"> Resposta da questão: </label><br><textarea type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" <textarea/><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+            var add_input_count = 1;
+            $(add_input).click(function () {
+                var new_input = '<div class="form__fieldset"><label for="text-question" class="form__label"> Texto da questão </label><br><textarea type="text-question" name="text-question-field[]" id="text-question" class="form__input">Passo ' + (add_input_count + 1) + '</textarea><br><label for="answer-question" class="form__label"> Resposta da questão: </label><br><textarea type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" <textarea/><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button" /></a></div>'
+                var new_input = '<div id="line" class="flex"><label for="text-question" id="label-text-question" class="form__label"> Texto da questão </label><br><textarea type="text-question" name="text-question-field[]" id="text-question" class="form__input">Passo ' + (add_input_count) + '</textarea><br><label for="label-answer-question" id="answer-question" class="form__label"> Resposta da questão: </label><br><textarea type="text" name="answer-question-field[]" value="" id="answer-question" class="form__input" <textarea/><a href="javascript:void(0);"  class="remove-input" title="Remove input"><img src="/static/minus.png"/ class="img-button minus" /></a></div>'
+
+                if (add_input_count < max_input_fields) {
+                    add_input_count++;
+                    $(input_wrapper).append(new_input);
+                }
+
+                // $('html, body').animate({
+                //     scrollTop: $('#line').offset().top
+                // }, 'fast');
+            });
+            $(input_wrapper).on('click', '.remove-input', function (e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                add_input_count--;
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

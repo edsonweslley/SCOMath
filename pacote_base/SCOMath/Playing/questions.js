@@ -7,7 +7,7 @@ test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_1",
 
                                 null,
 
-                                "X = 20 - 10 - 30",
+                                "4x = 50 - 10",
 
                                 "obj_playing"
 )
@@ -22,7 +22,7 @@ test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_2",
 
                                 null,
 
-                                "X = 20 - 40",
+                                "4x = 40",
 
                                 "obj_playing"
 )
@@ -37,7 +37,22 @@ test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_3",
 
                                 null,
 
-                                "X = -20",
+                                "x = 40 / 4",
+
+                                "obj_playing"
+)
+                );
+    
+
+test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_4",
+
+                                "Passo 4",
+
+                                QUESTION_TYPE_NUMERIC,
+
+                                null,
+
+                                "x = 10",
 
                                 "obj_playing"
 )

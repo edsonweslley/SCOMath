@@ -44,6 +44,7 @@ def create_app():
                 scripts.create_question(text_question[i], answer_question[i], i + 1)
             scripts.create_name_question(statement_question[0])
             scripts.zip_folder(cte.PATH_PACOTE_BASE, cte.NAME_SCO)
+            scripts.blank_question_file()
 
             return send_from_directory(cte.PATH_PACOTE_BASE, cte.NAME_SCO + '.zip')
         return render_template('questions.html')

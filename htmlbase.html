@@ -100,7 +100,8 @@ for (var i=0; i<includeFiles.length; i++){
             // }
             
             // wasCorrect = (correctAnswer == learnerResponse);
-            wasCorrect = (stringSimilarity.compareTwoStrings((learnerResponse.toLowerCase().split(' ').sort()).join(' '), ((correctAnswer.toLowerCase().split(' ').sort()).join(' '))) + stringSimilarity.compareTwoStrings(learnerResponse.toLowerCase(), correctAnswer.toLowerCase())> 0.8);
+            // wasCorrect = (stringSimilarity.compareTwoStrings((learnerResponse.toLowerCase().split(' ').sort()).join(' '), ((correctAnswer.toLowerCase().split(' ').sort()).join(' '))) + stringSimilarity.compareTwoStrings(learnerResponse.toLowerCase(), correctAnswer.toLowerCase())> 0.8);
+            wasCorrect = (((stringSimilarity.compareTwoStrings((learnerResponse.toLowerCase().split(' ').sort()).join(' '), ((correctAnswer.toLowerCase().split(' ').sort()).join(' '))) + stringSimilarity.compareTwoStrings(learnerResponse.toLowerCase(), correctAnswer.toLowerCase())) / 2) > 0.95);
             
             if (wasCorrect) {correctCount++;}
             
@@ -114,7 +115,7 @@ for (var i=0; i<includeFiles.length; i++){
                                         test.Questions[i].ObjectiveId);
             }
             
-            resultsSummary += "<div class='questionResult'><h3>Passo " + (i + 1) + "<br> Sua resposta: " + learnerResponse + "</h3>";
+            resultsSummary += "<div class='questionResult'><h3>Passo " + (parseInt(i) + 1) + "<br> Sua resposta: " + learnerResponse + "</h3>";
             if (wasCorrect) {
                 // resultsSummary += "Sua resposta: " + learnerResponse + "<br>"
                 resultsSummary += "<em>Resposta Correta</em><br>"

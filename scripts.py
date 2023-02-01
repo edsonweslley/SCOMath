@@ -20,21 +20,6 @@ def zip_folder(path, foldername):
     return (str(foldername))
 
 
-# def create_question(id, text, type, answers, correctAnswer, objectiveId):
-#     question = f"""
-# test.AddQuestion(new Question ("{id}",\n
-#                                 "{text}",\n
-#                                 {type},\n
-#                                 {answers},\n
-#                                 {correctAnswer},\n
-#                                 "{objectiveId}"\n)
-#                 );
-#     """
-#     with open('teste.js', 'w') as file:
-#         for line in question.split('\n'):
-#             file.write(line + '\n')
-
-
 def create_question(text, correctAnswer, step):
     question = f"""
 test.AddQuestion(new Question ("com.scorm.golfsamples.interactions.playing_{step}",\n
@@ -71,38 +56,3 @@ RenderTest(test);
     final_html = string_html_base + name_question
     with open(cte.PATH_ASSESSMENT, 'w', encoding='utf-8') as file:
         file.write(final_html)
-
-
-
-
-path = cte.PATH_INPUT
-filename = 'SequencingSimpleRemediation_SCORM20043rdEdition.zip'
-foldername = filename.split(".")[0]
-
-# zip_folder(path, foldername)
-
-# extract_zip(path, filename)
-
-# create_question("com.scorm.golfsamples.interactions.fun_3",
-#                 "You should take your score very seriously if you
-# want to have a lot of fun on the course.",
-#                 "QUESTION_TYPE_TF",
-#                 "null",
-#                 "false",
-#                 "obj_havingfun")
-
-# blank_question_file()
-# x = 
-
-# y = ""
-# for e in x:
-#     # print(str(e))
-#     y += e
-
-# # with open('htmlbase.html', 'a') as file:
-# #     file.write('teste')
-
-# y = y[:len(y)-105:]
-
-# z = open('novohtml.html', 'w', encoding='utf-8')
-# z.write(y)

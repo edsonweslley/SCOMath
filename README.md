@@ -11,10 +11,10 @@ O SCOMath é uma solução para gerar pacotes SCORM para serem utilizados em sis
 
 ### Tutorial de uso
 - [SCOMath](https://www.youtube.com/watch?v=56XMm8YLci0)
-- [Adição no Moodle](https://www.youtube.com/watch?v=lK1Af_9_tZc)
+- [Importação de pacote no Moodle](https://www.youtube.com/watch?v=lK1Af_9_tZc)
 
 #
-## Uso da aplicação
+## Subindo a aplicação (Professor)
 Para o uso da aplicação, o usuário deverá ter o Flask instalado na sua máquina (ver 2.2.2), para a instalação do mesmo é simples basta executar o comando: **!pip install Flask==2.2.2**. 
 
 Ao realizar a instalação, o usuário deverá levantar o servidor, indo até a pasta raiz do projeto e digitando o seguinte comando no terminal: **flask --app app --debug run**
@@ -26,7 +26,7 @@ Se tudo funcionou como esperado o mesmo irá se deparar com o SCOMath funcionand
 </p>
 
 #
-## Como funciona?
+## Criando um questionário (Professor)
 Após acessar a aplicação, o professor criará um enunciado e posteriomente definirá a quantidade total de passos. Caso tenha adicionado passos além do necessário basta pressionar o botão **-** que o passo será removido. Exemplo de preenchimento:
 <img align="center" height="450" src="./imagesReadme/app.png">
 </p>
@@ -34,7 +34,7 @@ Após acessar a aplicação, o professor criará um enunciado e posteriomente de
 Ao finalizar o preenchimento, basta pressionar o botão ***Gerar pacote SCORM*** e escolher onde realizar o download do pacote gerado.
 
 #
-## Adição do Pacote gerado
+## Importação do pacote gerado (Professor)
 Para demonstrar a adição do pacote, o LMS escolhido foi o Moodle. O professor deverá navegar até a página do curso, habilitar a edição e posteriomente clicar em "Adicionar atividade ou recurso" <br>
 <img align="center" height="250" src="./imagesReadme/add_activity.png">
 </p>
@@ -52,7 +52,7 @@ Como resultado: <br>
 </p>
 
 #
-## Uso do Pacote gerado
+## Exemplo de uso do pacote gerado (Aluno)
 Segue o exemplo de execução de um pacote gerado. Depois de preencher os passos e o botão **Enviar questionário** ser pressionado, o usuário receberá um feedback.<br>
 <img align="center" height="270" src="./imagesReadme/example_activity.png">
 </p>
